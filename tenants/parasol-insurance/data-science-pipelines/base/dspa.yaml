@@ -22,7 +22,7 @@ spec:
     externalStorage:
       basePath: ''
       bucket: pipelines
-      host: 'minio.object-datastore.svc.cluster.local:9000'
+      host: 'http://minio.object-datastore.svc.cluster.local:9000'
       port: ''
       region: us-east-1
       s3CredentialsSecret:
