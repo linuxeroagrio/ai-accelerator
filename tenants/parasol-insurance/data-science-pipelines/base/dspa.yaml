@@ -5,9 +5,15 @@ metadata:
   namespace: parasol-insurance
 spec:
   apiServer:
+    artifactSignedURLExpirySeconds: 60
+    caBundleFileMountPath: ""
+    caBundleFileName: ""
     deploy: true
-    enableSamplePipeline: false
     enableOauth: true
+    enableSamplePipeline: false
+    managedPipelines:
+      instructLab:
+        state: Removed
   database:
     disableHealthCheck: false
     mariaDB:
@@ -20,19 +26,20 @@ spec:
     disableHealthCheck: false
     enableExternalRoute: false
     externalStorage:
-      basePath: ''
+      basePath: ""
       bucket: pipelines
-      host: 'http://minio.object-datastore.svc.cluster.local:9000'
-      port: ''
+      host: minio-api-object-datastore.apps.cluster-fr8hz.fr8hz.sandbox956.opentlc.com
+      port: ""
       region: us-east-1
       s3CredentialsSecret:
-        accessKey: minio # Update with minio access key
-        secretKey: minio123 # Update with minio secret key
-        secretName: minio-creds # Update with the secret name
-      scheme: http
+        accessKey: AWS_ACCESS_KEY_ID
+        secretKey: AWS_SECRET_ACCESS_KEY
+        secretName: dashboard-dspa-secret
+      scheme: https
   persistenceAgent:
     deploy: true
     numWorkers: 2
+  podToPodTLS: true
   scheduledWorkflow:
     cronScheduleTimezone: UTC
     deploy: true
